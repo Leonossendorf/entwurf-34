@@ -1,0 +1,258 @@
+/* Zahnarztpraxis Dr. Neuhaus – Entwurf von Leon Oßendorf */
+@font-face{font-family:"Manrope";src:url(../fonts/manrope-var.woff2) format("woff2");font-weight:200 800;font-display:swap}
+@font-face{font-family:"Atkinson";src:url(../fonts/atkinson-var.woff2) format("woff2");font-weight:200 800;font-display:swap}
+
+:root{
+  --wein:#893648;      /* Logo */
+  --wein-dunkel:#6b2536;
+  --beere:#980048;     /* Teamkleidung */
+  --tint:#f7eef1;
+  --wand:#f6f7f9;      /* Wand im Treppenhaus */
+  --ink:#231d20;
+  --grau:#565656;
+  --linie:#dcd6d9;
+  --weiss:#fff;
+  --fs:1.125rem;
+  --maxw:72rem;
+  --r:6px;
+}
+html.gross{font-size:118.75%}
+html.kontrast{--wein:#5a1626;--wein-dunkel:#3e0d19;--grau:#2a2a2a;--ink:#000;--linie:#666;--tint:#fff;--wand:#fff}
+html.kontrast img{filter:contrast(1.05)}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;font-family:"Atkinson",system-ui,sans-serif;font-size:var(--fs);line-height:1.55;color:var(--ink);background:var(--weiss)}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--wein)}
+a:hover{color:var(--wein-dunkel)}
+h1,h2,h3{font-family:"Manrope",system-ui,sans-serif;line-height:1.15;letter-spacing:-.015em;margin:0 0 .5em;color:var(--ink)}
+h1{font-size:clamp(2.1rem,5.2vw,3.5rem);font-weight:750;text-wrap:balance}
+h2{font-size:clamp(1.65rem,3.4vw,2.4rem);font-weight:750}
+h3{font-size:1.2rem;font-weight:700}
+p{margin:0 0 1em;max-width:62ch}
+:focus-visible{outline:3px solid var(--beere);outline-offset:3px;border-radius:2px}
+.skip{position:absolute;left:-999px;top:0;background:var(--ink);color:#fff;padding:.7rem 1rem;z-index:100}
+.skip:focus{left:1rem;top:1rem}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 1.25rem}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* Kopf */
+.kopf{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--linie)}
+.kopf .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:0 1rem;min-height:4.4rem;position:relative}
+.marke{display:flex;align-items:center;gap:.7rem;text-decoration:none;color:var(--grau);margin-right:auto}
+.marke svg{width:34px;height:44px;flex:none}
+.marke b{display:block;font-family:"Manrope";font-weight:750;font-size:.98rem;line-height:1.2;color:#595959}
+.marke small{display:block;font-size:.8rem;color:var(--grau);letter-spacing:.02em}
+.nav{display:flex;gap:1.2rem;order:5;width:100%;overflow-x:auto;padding:0 0 .35rem;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav a{white-space:nowrap}
+@media (max-width:1119px){.nav{gap:1rem}.nav a{font-size:.9rem}}
+.nav a{text-decoration:none;color:var(--ink);font-weight:600;font-family:"Manrope";font-size:.95rem;padding:.4rem 0;border-bottom:2px solid transparent}
+.nav a:hover,.nav a[aria-current]{border-color:var(--wein);color:var(--ink)}
+.kopf .tel{display:none;font-weight:700;text-decoration:none;font-family:"Manrope";color:var(--ink);white-space:nowrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:48px;padding:.7rem 1.25rem;border-radius:var(--r);border:2px solid var(--wein);background:var(--wein);color:#fff;font-family:"Manrope";font-weight:700;font-size:1rem;text-decoration:none;cursor:pointer;transition:background .25s,transform .25s}
+.btn:hover{background:var(--wein-dunkel);border-color:var(--wein-dunkel);color:#fff}
+.btn.hell{background:transparent;color:var(--wein)}
+.btn.hell:hover{background:var(--tint);color:var(--wein-dunkel)}
+.a11y-btn{display:inline-flex;align-items:center;gap:.4rem;min-height:44px;padding:.4rem .6rem;border:1px solid var(--linie);border-radius:var(--r);background:#fff;color:var(--ink);font:600 .9rem "Manrope";cursor:pointer}
+.a11y-btn svg{width:22px;height:22px}
+.a11y-panel{position:absolute;right:1rem;top:calc(100% + .4rem);width:min(21rem,calc(100vw - 2rem));background:#fff;border:1px solid var(--linie);border-radius:var(--r);box-shadow:0 12px 30px rgba(0,0,0,.12);padding:1rem;display:none}
+.a11y-panel.offen{display:block}
+.a11y-panel h2{font-size:1.05rem;margin-bottom:.6rem}
+.a11y-panel button,.a11y-panel a{display:flex;width:100%;justify-content:space-between;align-items:center;min-height:44px;padding:.5rem .7rem;margin:.3rem 0;border:1px solid var(--linie);border-radius:var(--r);background:#fff;color:var(--ink);font:600 .95rem "Atkinson";text-decoration:none;cursor:pointer;text-align:left}
+.a11y-panel [aria-pressed=true]{background:var(--tint);border-color:var(--wein)}
+.a11y-panel [aria-pressed=true]::after{content:"an";font-size:.8rem;color:var(--wein)}
+
+/* Hero */
+.hero{background:var(--wand);position:relative;overflow:hidden}
+.hero-bild{position:relative}
+.hero-bild img{width:100%;height:48vh;min-height:280px;max-height:520px;object-fit:cover;object-position:68% 20%}
+.hero-text{padding:1.6rem 0 2.4rem}
+.job-hinweis{display:inline-flex;gap:.5rem;align-items:center;font-weight:700;font-family:"Manrope";font-size:.95rem;color:var(--wein);text-decoration:none;border-bottom:1px solid currentColor;margin-bottom:1.2rem}
+.hero p.lead{font-size:1.2rem;color:#3b3437}
+.hero .knoepfe{display:flex;flex-wrap:wrap;gap:.7rem;margin:1.4rem 0 1.2rem}
+.status{display:flex;align-items:flex-start;gap:.6rem;font-weight:600}
+.status .punkt{margin-top:.45rem}
+.status .punkt{width:.75rem;height:.75rem;border-radius:50%;background:#9a9a9a;flex:none}
+.status.auf .punkt{background:#2f7d4f;box-shadow:0 0 0 4px rgba(47,125,79,.15)}
+.status a{font-weight:600}
+.etikett{position:absolute;right:1rem;bottom:1rem;background:rgba(255,255,255,.92);padding:.45rem .7rem;font-size:.82rem;line-height:1.35;border-left:3px solid var(--beere);color:#333;max-width:17rem}
+
+/* Abschnitte */
+section{padding:4rem 0}
+.wand{background:var(--wand)}
+.unterzeile{color:var(--grau);font-size:1.05rem}
+
+/* Wege */
+.wege{list-style:none;padding:0;margin:1.5rem 0 0;border-top:1px solid var(--linie)}
+.wege a{display:grid;grid-template-columns:3rem 1fr auto;align-items:center;gap:1rem;padding:1.15rem .25rem;border-bottom:1px solid var(--linie);text-decoration:none;color:var(--ink);transition:background .25s,padding .25s}
+.wege a:hover{background:var(--tint);padding-left:.8rem}
+.wege .nr{font-family:"Manrope";font-weight:700;color:var(--wein);font-size:.95rem}
+.wege b{font-family:"Manrope";font-size:1.2rem;display:block}
+.wege span.k{color:var(--grau);font-size:1rem}
+.wege .pfeil{font-size:1.4rem;color:var(--wein)}
+
+/* Zahnersatz */
+.ze{display:grid;gap:2.5rem}
+.rechner{background:#fff;border:1px solid var(--linie);border-radius:var(--r);padding:1.4rem}
+.rechner fieldset{border:0;padding:0;margin:0 0 1.2rem}
+.rechner legend{font-weight:700;margin-bottom:.6rem;font-family:"Manrope"}
+.seg{display:flex;flex-wrap:wrap;gap:.5rem}
+.seg label{position:relative}
+.seg input{position:absolute;opacity:0;width:1px;height:1px}
+.seg span{display:inline-flex;align-items:center;min-height:44px;padding:.45rem .9rem;border:1.5px solid var(--linie);border-radius:999px;cursor:pointer;font-weight:600;background:#fff}
+.seg input:checked+span{border-color:var(--wein);background:var(--tint);color:var(--wein-dunkel)}
+.seg input:focus-visible+span{outline:3px solid var(--beere);outline-offset:2px}
+.balken{margin:.3rem 0 1rem}
+.balken .zeile{display:grid;grid-template-columns:9.5rem 1fr 3.4rem;gap:.7rem;align-items:center;margin:.55rem 0}
+.balken .bahn{height:1.6rem;background:#efeaec;border-radius:3px;overflow:hidden}
+.balken .fuell{display:block;height:100%;background:var(--wein);width:0;transition:width .6s cubic-bezier(.2,.7,.2,1)}
+.balken .fuell.neu{background:#b88a96}
+.balken .wert{font-family:"Manrope";font-weight:800;font-size:1.15rem;text-align:right}
+.balken .lbl{font-size:.95rem;line-height:1.25}
+@media (max-width:639px){.balken .zeile{grid-template-columns:1fr 3.4rem;row-gap:.25rem}.balken .lbl{grid-column:1/-1}}
+.rechner .klein{font-size:.92rem;color:var(--grau)}
+.liste{padding-left:1.1rem}
+.liste li{margin:.3rem 0}
+.quelle{font-size:.85rem;color:var(--grau)}
+
+/* Lebenslinie */
+.linie{list-style:none;margin:2rem 0 0;padding:0;display:grid;gap:0}
+.linie li{position:relative;padding:0 0 1.6rem 2.2rem;border-left:2px solid var(--linie);margin-left:.5rem}
+.linie li:last-child{border-color:transparent}
+.linie li::before{content:"";position:absolute;left:-.55rem;top:.2rem;width:.9rem;height:.9rem;border-radius:50%;background:#fff;border:3px solid var(--wein)}
+.linie h3{margin-bottom:.2rem}
+.linie p{margin:0;color:#3b3437}
+.linie .alter{display:block;font-size:.88rem;color:var(--wein);font-weight:700;font-family:"Manrope"}
+
+/* Familie */
+.familie{display:grid;gap:2rem;align-items:start}
+.familie figure{margin:0}
+.familie figcaption{font-size:.9rem;color:var(--grau);margin-top:.5rem}
+.zitat{font-family:"Manrope";font-size:1.5rem;font-weight:700;line-height:1.3;color:var(--wein);margin:0 0 1rem;max-width:22ch}
+.aerzte{list-style:none;padding:0;margin:1.5rem 0 0;display:grid;gap:.8rem}
+.aerzte li{padding:1rem 1.1rem;border:1px solid var(--linie);border-radius:var(--r);background:#fff}
+.aerzte li.bald{border-style:dashed;background:transparent}
+.aerzte b{display:block;font-family:"Manrope"}
+.aerzte span{color:var(--grau);font-size:1rem}
+.team-bild{margin:2.5rem 0 0}
+.team-bild img{width:100%;border-radius:var(--r)}
+.angst{margin-top:3rem;display:grid;gap:1.5rem;padding:1.6rem;border-radius:var(--r);background:var(--tint)}
+.angst h3{font-size:1.4rem}
+.sterne{font-family:"Manrope";font-weight:800;font-size:2.4rem;color:var(--wein);line-height:1}
+
+/* Jobs */
+.jobs{background:var(--wein);color:#fff}
+.jobs h2,.jobs h3{color:#fff}
+.jobs a.btn{background:#fff;color:var(--wein);border-color:#fff}
+.jobs a.btn:hover{background:var(--tint)}
+.jobs .stellen{list-style:none;padding:0;margin:1rem 0 1.6rem}
+.jobs .stellen li{padding:.7rem 0;border-bottom:1px solid rgba(255,255,255,.3);font-weight:600}
+.jobs .stellen small{display:block;font-weight:400;opacity:.9}
+.jobs-grid{display:grid;gap:2rem;align-items:center}
+.jobs img{border-radius:var(--r)}
+
+/* Kontakt */
+.kontakt-grid{display:grid;gap:2.5rem}
+.zeiten{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.zeiten th,.zeiten td{text-align:left;padding:.55rem .4rem;border-bottom:1px solid var(--linie);vertical-align:top}
+.zeiten th{font-weight:700;width:7.5rem}
+.zeiten tr.heute{background:var(--tint)}
+.zeiten tr.heute th::after{content:" · heute";color:var(--wein);font-weight:600;font-size:.85rem}
+.notdienst{margin-top:1.6rem;padding:1.2rem;border-left:4px solid var(--beere);background:#fff}
+.notdienst h3{margin-bottom:.3rem}
+.notdienst .nummer{font-family:"Manrope";font-weight:800;font-size:1.5rem;color:var(--ink);text-decoration:none}
+.anfahrt{display:grid;gap:1rem;margin-top:2rem;grid-template-columns:1fr 1fr}
+.anfahrt img{border-radius:var(--r);aspect-ratio:1/1;object-fit:cover;width:100%}
+.anfahrt figcaption{font-size:.88rem;color:var(--grau);margin-top:.35rem}
+.anfahrt figure{margin:0}
+
+/* Formular */
+.form{background:#fff;border:1px solid var(--linie);border-radius:var(--r);padding:1.4rem}
+.form h2{font-size:1.6rem}
+.feld{margin:0 0 1.15rem}
+.feld>label,.feld legend{display:block;font-weight:700;margin-bottom:.4rem;font-family:"Manrope";font-size:1rem}
+.feld fieldset{border:0;margin:0;padding:0}
+.opt{font-weight:400;color:var(--grau);font-family:"Atkinson";font-size:.9rem}
+input[type=text],input[type=tel],input[type=email],textarea,input[type=file]{width:100%;min-height:48px;padding:.65rem .8rem;border:1.5px solid #8d8589;border-radius:var(--r);font:inherit;color:var(--ink);background:#fff}
+input::placeholder,textarea::placeholder{color:#6b6468}
+textarea{min-height:6.5rem;resize:vertical}
+input:focus,textarea:focus{border-color:var(--wein);outline:3px solid rgba(137,54,72,.25);outline-offset:0}
+.zwei{display:grid;gap:1rem}
+.hinweis{font-size:.92rem;color:var(--grau)}
+.fehler{color:#a1122e;font-weight:600;font-size:.95rem;margin:.4rem 0 0}
+.info-schmerz{display:none;margin:.6rem 0 0;padding:.7rem .9rem;background:#fff4e5;border-left:4px solid #b25e00;font-size:.98rem}
+.info-schmerz.zeigen{display:block}
+.danke{display:none;text-align:left;padding:1.4rem;border-radius:var(--r);background:var(--tint);border:1px solid var(--wein)}
+.danke.zeigen{display:block}
+.danke h3{color:var(--wein-dunkel)}
+.entwurf-vermerk{font-size:.85rem;color:var(--grau);margin-top:.8rem}
+
+/* Fuß */
+.fuss{background:#231d20;color:#e9e4e6;padding:3rem 0 6rem;font-size:1rem}
+.fuss a{color:#fff}
+.fuss .spalten{display:grid;gap:2rem}
+.fuss h2{color:#fff;font-size:1.1rem}
+.fuss ul{list-style:none;padding:0;margin:0}
+.fuss li{margin:.3rem 0}
+.fuss .entwurf{margin-top:2.5rem;padding-top:1.2rem;border-top:1px solid #4a4245;font-size:.9rem;color:#cfc7ca}
+
+/* Handy-Leiste */
+.leiste{position:fixed;left:0;right:0;bottom:0;z-index:60;display:grid;grid-template-columns:repeat(3,1fr);background:#fff;border-top:1px solid var(--linie);box-shadow:0 -6px 20px rgba(0,0,0,.06)}
+.leiste a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.15rem;min-height:60px;text-decoration:none;color:var(--ink);font:700 .85rem "Manrope"}
+.leiste a+a{border-left:1px solid var(--linie)}
+.leiste svg{width:22px;height:22px;color:var(--wein)}
+
+/* Unterseiten */
+.seitenkopf{background:var(--wand);padding:3rem 0 2.5rem}
+.seitenkopf img{border-radius:var(--r)}
+.familie img{border-radius:var(--r)}
+.text-seite{padding:3rem 0}
+.text-seite h2{font-size:1.5rem;margin-top:2rem}
+.platzhalter{padding:1rem 1.2rem;border:1px dashed var(--wein);background:var(--tint);border-radius:var(--r)}
+
+/* Einblenden */
+.zeig{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+.zeig.da{opacity:1;transform:none}
+html.ruhig *,html.ruhig *::before{transition:none!important;animation:none!important;scroll-behavior:auto!important}
+html.ruhig .zeig{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}.zeig{opacity:1;transform:none}}
+
+@media (max-width:899px){
+  .marke b{font-size:.92rem}
+  .marke b .trenn{display:none}
+  .marke b>span{display:block}
+  .marke small{display:none}
+  .a11y-txt{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .a11y-btn{min-width:48px;justify-content:center}
+  .etikett{display:none}
+}
+@media (max-width:639px){.anfahrt figure:last-child{grid-column:1/-1}.anfahrt figure:last-child img{aspect-ratio:16/9}}
+@media (min-width:640px){
+  .zwei{grid-template-columns:1fr 1fr}
+  .anfahrt{grid-template-columns:1fr 1fr 1fr}
+}
+@media (min-width:1120px){.kopf .tel{display:inline}.nav{order:0;width:auto;padding:0;overflow:visible}}
+@media (min-width:900px){
+  .leiste{display:none}
+  .fuss{padding-bottom:3rem}
+  section{padding:5.5rem 0}
+  .hero{min-height:min(84vh,720px);display:flex;align-items:center}
+  .hero>.wrap{width:100%}
+  .hero-bild{position:absolute;inset:0 0 0 auto;width:62%}
+  .hero-bild img{height:100%;max-height:none;object-position:62% 25%;-webkit-mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.35) 14%,#000 34%);mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.35) 14%,#000 34%)}
+  .hero-text{position:relative;padding:4rem 0;max-width:31rem}
+  .ze{grid-template-columns:1fr 1.05fr;align-items:start}
+  .linie{grid-template-columns:repeat(6,1fr);gap:1.2rem}
+  .linie li{border-left:0;border-top:2px solid var(--linie);margin:0;padding:1.6rem 0 0}
+  .linie li:last-child{border-color:var(--linie)}
+  .linie li::before{left:0;top:-.55rem}
+  .familie{grid-template-columns:1.1fr 1fr;gap:3.5rem}
+  .angst{grid-template-columns:2fr 1fr;align-items:center;padding:2.2rem}
+  .jobs-grid{grid-template-columns:1fr 1.1fr;gap:3.5rem}
+  .kontakt-grid{grid-template-columns:1fr 1.1fr;gap:3.5rem}
+  .fuss .spalten{grid-template-columns:1.3fr 1fr 1fr 1fr}
+}
+
+[id]{scroll-margin-top:7.5rem}
